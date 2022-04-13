@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import CategoryRepository from '../repository/category-repository';
+import CategoryRepository from '../repositories/category-repository';
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {

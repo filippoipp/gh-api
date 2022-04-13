@@ -26,7 +26,6 @@ export default {
       },
     ],
   ],
-  testResultsProcessor: 'jest-sonar-reporter',
   transformIgnorePatterns: ['node_modules/'],
   preset: 'ts-jest',
 } as Config.InitialOptions;

@@ -13,7 +13,7 @@ class Config {
 
   public static SERVERS = {
     http: {
-      hostname: process.env.HTTP_HOST || 'localhost',
+      hostname: process.env.HTTP_HOST || '0.0.0.0',
       port: parseInt(process.env.HTTP_PORT, 10) || 3000,
     },
   };
