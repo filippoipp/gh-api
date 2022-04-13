@@ -11,8 +11,7 @@ const basePath = process.env.ENVIRONMENT === 'dev' ? './src/' : './dist/';
 
 module.exports = [
   {
-    name: 'default',
-    type: process.env.DATABASE_TYPE,
+    type: process.env.DATABASE_TYPE || 'postgres',
     host: process.env.DATABASE_URL,
     port: parseInt(process.env.DATABASE_PORT, 10),
     username: process.env.DATABASE_USERNAME,

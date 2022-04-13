@@ -1,13 +1,14 @@
 import HttpError from '@errors/http-error';
 import { categoryErrorKeys, categoryErrorMessages } from '@errors/translator/category';
 import { getRepository } from 'typeorm';
-import Category from '../entity/category';
+import Category from '../entities/category';
 
 export default class CategoryRepository {
   public async create(categoryData: any): Promise<any> {
     try {
       const categoryRepository = getRepository(Category);
-      await categoryRepository.save(categoryData);
+      const category = await categoryRepository.save(categoryData);
+      return category;
     } catch (error) {
       throw new HttpError(
         500,
@@ -49,7 +50,8 @@ export default class CategoryRepository {
   public async get(id: string): Promise<any> {
     try {
       const categoryRepository = getRepository(Category);
-      await categoryRepository.findOne(id);
+      const category = await categoryRepository.findOne(id);
+      return category;
     } catch (error) {
       throw new HttpError(
         500,
@@ -63,7 +65,8 @@ export default class CategoryRepository {
   public async getAll(): Promise<any> {
     try {
       const categoryRepository = getRepository(Category);
-      await categoryRepository.find();
+      const categories = await categoryRepository.find();
+      return categories;
     } catch (error) {
       throw new HttpError(
         500,
