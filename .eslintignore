@@ -1,0 +1,14 @@
+node_modules
+dist
+db
+jest.config.js
+jest.setup.js
+startTestContainer.ts
+target
+service.teste.ts
+test
+babel.config.js
+docs
+ormconfig.ts
+*.js
+*.json

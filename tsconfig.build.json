@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "outDir": "dist",
+    "declaration": true,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@infra/*": ["./src/infra/*"],
+      "@config/*": ["./src/config/*"],
+      "@constants*": ["./src/constants.ts"],
+      "@domain/*": ["./src/domain/*"],
+      "@errors/*": ["./src/errors/*"],
+      "@startup/*": ["./src/startup/*"]
+    }
+  },
+  "compileOnSave": false,
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.mock.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
+}
