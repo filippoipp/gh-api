@@ -60,9 +60,9 @@ async function getAll(req: Request, res: Response, next: NextFunction) {
 async function importCategories(req: Request, res: Response, next: NextFunction) {
   try {
     const categoryService = new CategoryService();
-    const response = await categoryService.importCategories(req.files[0]);
+    await categoryService.importCategories(req.files[0]);
 
-    res.status(200).json(response);
+    res.status(200).json({ message: 'Imported.' });
   } catch (error) {
     next(error);
   }
