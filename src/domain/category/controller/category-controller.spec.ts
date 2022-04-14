@@ -19,8 +19,8 @@ describe('Test category controller', () => {
     const createdCategoryMock = {
       name: 'any_name',
       id: 'any_id',
-      createdAt: 'any_date',
-      updatedAt: 'any_date',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
     const mockRequest = getMockReq({
       body: {
@@ -166,7 +166,7 @@ describe('Test category controller', () => {
 
     const { res, next } = getMockRes();
 
-    CategoryRepositoryMock.prototype.remove.mockResolvedValue({});
+    CategoryRepositoryMock.prototype.remove.mockResolvedValue();
 
     await categoryController.remove(mockRequest, res, next);
 
@@ -215,7 +215,7 @@ describe('Test category controller', () => {
 
     const { res, next } = getMockRes();
 
-    CategoryRepositoryMock.prototype.update.mockResolvedValue({ message: 'Category updated' });
+    CategoryRepositoryMock.prototype.update.mockResolvedValue();
 
     await categoryController.update(mockRequest, res, next);
 

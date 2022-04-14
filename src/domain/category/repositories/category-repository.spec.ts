@@ -20,10 +20,10 @@ describe('Test category repository', () => {
     repositoryMock.save.mockResolvedValue(categoryMock);
 
     const categoryRepository = new CategoryRepository();
-    const createdCategory = await categoryRepository.create(name);
+    const createdCategory = await categoryRepository.create({ name });
 
     expect(repositoryMock.save).toBeCalledTimes(1);
-    expect(repositoryMock.save).toBeCalledWith(name);
+    expect(repositoryMock.save).toBeCalledWith({ name });
     expect(createdCategory).toEqual(categoryMock);
   });
 
@@ -34,10 +34,10 @@ describe('Test category repository', () => {
 
     try {
       const categoryRepository = new CategoryRepository();
-      await categoryRepository.create(name);
+      await categoryRepository.create({ name });
     } catch (error) {
       expect(repositoryMock.save).toBeCalledTimes(1);
-      expect(repositoryMock.save).toBeCalledWith(name);
+      expect(repositoryMock.save).toBeCalledWith({ name });
       expect(error.code).toEqual('CATEGORY-001');
       expect(error.statusCode).toEqual(500);
     }
@@ -152,10 +152,10 @@ describe('Test category repository', () => {
     repositoryMock.update.mockResolvedValue(updatedCategoryMock);
 
     const categoryRepository = new CategoryRepository();
-    await categoryRepository.update(id, name);
+    await categoryRepository.update(id, { name });
 
     expect(repositoryMock.update).toBeCalledTimes(1);
-    expect(repositoryMock.update).toBeCalledWith(id, name);
+    expect(repositoryMock.update).toBeCalledWith(id, { name });
   });
 
   test('Should return error when call update with exception', async () => {
@@ -166,10 +166,10 @@ describe('Test category repository', () => {
 
     try {
       const categoryRepository = new CategoryRepository();
-      await categoryRepository.update(id, name);
+      await categoryRepository.update(id, { name });
     } catch (error) {
       expect(repositoryMock.update).toBeCalledTimes(1);
-      expect(repositoryMock.update).toBeCalledWith(id, name);
+      expect(repositoryMock.update).toBeCalledWith(id, { name });
       expect(error.code).toEqual('CATEGORY-003');
       expect(error.statusCode).toEqual(500);
     }

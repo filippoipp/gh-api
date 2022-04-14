@@ -2,9 +2,12 @@ import HttpError from '@errors/http-error';
 import { categoryErrorKeys, categoryErrorMessages } from '@errors/translator/category';
 import { getRepository } from 'typeorm';
 import Category from '../entities/category';
+import CategoryData from '../interfaces/category-data';
+import CreatedCategory from '../interfaces/created-category';
+import GetCategory from '../interfaces/get-category';
 
 export default class CategoryRepository {
-  public async create(categoryData: any): Promise<any> {
+  public async create(categoryData: CategoryData): Promise<CreatedCategory> {
     try {
       const categoryRepository = getRepository(Category);
       const category = await categoryRepository.save(categoryData);
@@ -19,7 +22,7 @@ export default class CategoryRepository {
     }
   }
 
-  public async remove(id: string): Promise<any> {
+  public async remove(id: string): Promise<void> {
     try {
       const categoryRepository = getRepository(Category);
       await categoryRepository.delete(id);
@@ -33,7 +36,7 @@ export default class CategoryRepository {
     }
   }
 
-  public async update(id: string, categoryData: any): Promise<any> {
+  public async update(id: string, categoryData: CategoryData): Promise<void> {
     try {
       const categoryRepository = getRepository(Category);
       await categoryRepository.update(id, categoryData);
@@ -47,7 +50,7 @@ export default class CategoryRepository {
     }
   }
 
-  public async get(id: string): Promise<any> {
+  public async get(id: string): Promise<GetCategory> {
     try {
       const categoryRepository = getRepository(Category);
       const category = await categoryRepository.findOne(id);
@@ -62,7 +65,7 @@ export default class CategoryRepository {
     }
   }
 
-  public async getAll(): Promise<any> {
+  public async getAll(): Promise<GetCategory[]> {
     try {
       const categoryRepository = getRepository(Category);
       const categories = await categoryRepository.find();
