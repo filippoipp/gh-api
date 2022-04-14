@@ -1,7 +1,9 @@
 import Joi from '@hapi/joi';
 
 const updateProductBody = {
-  name: Joi.string().required(),
+  name: Joi.string(),
+  category_id: Joi.string(),
+  price: Joi.number(),
 };
 
 const updateProductParams = {

@@ -11,12 +11,12 @@ describe('Test product repository', () => {
   test('Should return created product with success', async () => {
     const bodyMock = {
       name: 'any_name',
-      category_id: 'any_id',
+      categoryId: 'any_id',
       price: 10,
     };
     const productMock: Product = {
       name: bodyMock.name,
-      categoryId: bodyMock.category_id,
+      categoryId: bodyMock.categoryId,
       price: bodyMock.price,
       id: 'any_id',
       createdAt: new Date(),
@@ -34,16 +34,20 @@ describe('Test product repository', () => {
   });
 
   test('Should return error when call create with exception', async () => {
-    const name = 'any_name';
+    const bodyMock = {
+      name: 'any_name',
+      categoryId: 'any_id',
+      price: 10,
+    };
     const mockError = new Error('Any Error.');
     repositoryMock.save.mockRejectedValue(mockError);
 
     try {
       const productRepository = new ProductRepository();
-      await productRepository.create(name);
+      await productRepository.create(bodyMock);
     } catch (error) {
       expect(repositoryMock.save).toBeCalledTimes(1);
-      expect(repositoryMock.save).toBeCalledWith(name);
+      expect(repositoryMock.save).toBeCalledWith(bodyMock);
       expect(error.code).toEqual('PRODUCT-001');
       expect(error.statusCode).toEqual(500);
     }
@@ -158,10 +162,10 @@ describe('Test product repository', () => {
     repositoryMock.update.mockResolvedValue(updatedProductMock);
 
     const productRepository = new ProductRepository();
-    await productRepository.update(id, name);
+    await productRepository.update(id, { name });
 
     expect(repositoryMock.update).toBeCalledTimes(1);
-    expect(repositoryMock.update).toBeCalledWith(id, name);
+    expect(repositoryMock.update).toBeCalledWith(id, { name });
   });
 
   test('Should return error when call update with exception', async () => {
@@ -172,10 +176,10 @@ describe('Test product repository', () => {
 
     try {
       const productRepository = new ProductRepository();
-      await productRepository.update(id, name);
+      await productRepository.update(id, { name });
     } catch (error) {
       expect(repositoryMock.update).toBeCalledTimes(1);
-      expect(repositoryMock.update).toBeCalledWith(id, name);
+      expect(repositoryMock.update).toBeCalledWith(id, { name });
       expect(error.code).toEqual('PRODUCT-003');
       expect(error.statusCode).toEqual(500);
     }

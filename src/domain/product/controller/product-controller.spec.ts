@@ -23,11 +23,11 @@ describe('Test product controller', () => {
 
     const createdProductMock = {
       name: 'any_name',
-      category_id: 'any_id',
+      categoryId: 'any_id',
       price: 10,
       id: 'any_id',
-      createdAt: 'any_date',
-      updatedAt: 'any_date',
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
     const mockRequest = getMockReq({
       body: bodyMock,
@@ -75,7 +75,7 @@ describe('Test product controller', () => {
     const id = 'any_id';
     const productMock = {
       name: 'any_name',
-      category_id: 'any_id',
+      categoryId: 'any_id',
       price: 10,
       id: 'any_id',
     };
@@ -124,15 +124,17 @@ describe('Test product controller', () => {
   });
 
   test('Should response 200 when call getAll with success', async () => {
-    const categoryMock = [{
+    const productMock = [{
       name: 'any_name',
+      categoryId: 'any_id',
       id: 'any_id',
+      price: 10,
     }];
     const mockRequest = getMockReq({});
 
     const { res, next } = getMockRes();
 
-    ProductRepositoryMock.prototype.getAll.mockResolvedValue(categoryMock);
+    ProductRepositoryMock.prototype.getAll.mockResolvedValue(productMock);
 
     await productController.getAll(mockRequest, res, next);
 
@@ -141,7 +143,7 @@ describe('Test product controller', () => {
     expect(res.status).toBeCalledTimes(1);
     expect(res.status).toBeCalledWith(200);
     expect(res.json).toBeCalledTimes(1);
-    expect(res.json).toBeCalledWith(categoryMock);
+    expect(res.json).toBeCalledWith(productMock);
     expect(next).toHaveBeenCalledTimes(0);
   });
 
@@ -173,7 +175,7 @@ describe('Test product controller', () => {
 
     const { res, next } = getMockRes();
 
-    ProductRepositoryMock.prototype.remove.mockResolvedValue({});
+    ProductRepositoryMock.prototype.remove.mockResolvedValue();
 
     await productController.remove(mockRequest, res, next);
 
@@ -222,7 +224,7 @@ describe('Test product controller', () => {
 
     const { res, next } = getMockRes();
 
-    ProductRepositoryMock.prototype.update.mockResolvedValue({ message: 'Product updated' });
+    ProductRepositoryMock.prototype.update.mockResolvedValue();
 
     await productController.update(mockRequest, res, next);
 
