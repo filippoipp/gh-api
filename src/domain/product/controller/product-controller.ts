@@ -28,7 +28,7 @@ async function update(req: Request, res: Response, next: NextFunction) {
     const productRepository = new ProductRepository();
     await productRepository.update(req.params.id, req.body);
 
-    res.status(200).json({ message: 'product updated' });
+    res.status(200).json({ message: 'Product updated' });
   } catch (error) {
     next(error);
   }
