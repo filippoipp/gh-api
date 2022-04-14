@@ -9,6 +9,6 @@ export default class HttpError extends DefaultError {
     super(message, errorCode, error);
 
     this.statusCode = statusCode;
-    this.report = report?.response ? { ...report.response } : report;
+    this.report = report;
   }
 }
