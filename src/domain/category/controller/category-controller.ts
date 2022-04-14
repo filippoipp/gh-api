@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import CategoryRepository from '../repositories/category-repository';
+import CategoryService from '../services/category-service';
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
@@ -56,6 +57,17 @@ async function getAll(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function importCategories(req: Request, res: Response, next: NextFunction) {
+  try {
+    const categoryService = new CategoryService();
+    const response = await categoryService.importCategories(req.files[0]);
+
+    res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
-  create, remove, update, get, getAll,
+  create, remove, update, get, getAll, importCategories,
 };
