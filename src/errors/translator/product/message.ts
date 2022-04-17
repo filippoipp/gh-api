@@ -4,4 +4,5 @@ export default {
   'PRODUCT-003': 'Failed to update product.',
   'PRODUCT-004': 'Failed to get product.',
   'PRODUCT-005': 'Failed to get all products.',
+  'PRODUCT-006': 'Failed to import products.',
 };

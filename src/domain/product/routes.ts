@@ -1,6 +1,10 @@
 import { validateBody, validateParams } from 'src/middlewares/validation';
+import multer from 'multer';
+import multerConfig from '@config/multer-config';
 import productController from './controller/product-controller';
 import validation from './validations/validation';
+
+const upload = multer(multerConfig);
 
 export default [
   {
@@ -9,6 +13,14 @@ export default [
     handlers: [
       validateBody(validation.createProductBody),
       productController.create,
+    ],
+  },
+  {
+    method: 'post',
+    path: '/private/v1/product/import',
+    handlers: [
+      upload.any(),
+      productController.importProducts,
     ],
   },
   {

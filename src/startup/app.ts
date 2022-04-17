@@ -80,10 +80,10 @@ class App {
     this.express.use(
       (req: Request, res: Response, next: NextFunction): void => {
         res.header('Access-Control-Allow-Origin', '*');
-        res.header('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT']);
+        res.header('Access-Control-Allow-Methods', ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']);
         res.header(
           'Access-Control-Allow-Headers',
-          'Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-uuid, authorization, totp-token',
+          'Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-uuid',
         );
         next();
       },

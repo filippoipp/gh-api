@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import ProductRepository from '../repositories/product-repository';
+import ProductService from '../services/product-service';
 
 async function create(req: Request, res: Response, next: NextFunction) {
   try {
@@ -56,6 +57,17 @@ async function getAll(req: Request, res: Response, next: NextFunction) {
   }
 }
 
+async function importProducts(req: Request, res: Response, next: NextFunction) {
+  try {
+    const productService = new ProductService();
+    await productService.importProducts(req.files[0], req.body.categoryId);
+
+    res.status(200).json({ message: 'Imported.' });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
-  create, remove, update, get, getAll,
+  create, remove, update, get, getAll, importProducts,
 };

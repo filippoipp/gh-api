@@ -57,7 +57,9 @@ export default class ProductRepository {
   public async get(id: string): Promise<GetProduct> {
     try {
       const productRepository = getRepository(Product);
-      const product = await productRepository.findOne(id);
+      const product = await productRepository.findOne(id, {
+        relations: ['category'],
+      });
       return product;
     } catch (error) {
       throw new HttpError(
@@ -72,7 +74,9 @@ export default class ProductRepository {
   public async getAll(): Promise<GetProduct[]> {
     try {
       const productRepository = getRepository(Product);
-      const products = await productRepository.find();
+      const products = await productRepository.find({
+        relations: ['category'],
+      });
       return products;
     } catch (error) {
       throw new HttpError(

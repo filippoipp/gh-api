@@ -14,7 +14,7 @@ export default class Category {
   @OneToMany(() => Product, (product) => product.category)
   products?: Product[];
 
-  @CreateDateColumn({ name: 'created_at ', select: false })
+  @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
   @UpdateDateColumn({ name: 'updated_at', select: false })
