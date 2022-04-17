@@ -99,7 +99,7 @@ describe('Test product repository', () => {
     const product = await productRepository.get(id);
 
     expect(repositoryMock.findOne).toBeCalledTimes(1);
-    expect(repositoryMock.findOne).toBeCalledWith(id);
+    expect(repositoryMock.findOne).toBeCalledWith(id, { relations: ['category'] });
     expect(product).toEqual(productMock);
   });
 
@@ -113,7 +113,7 @@ describe('Test product repository', () => {
       await productRepository.get(id);
     } catch (error) {
       expect(repositoryMock.findOne).toBeCalledTimes(1);
-      expect(repositoryMock.findOne).toBeCalledWith(id);
+      expect(repositoryMock.findOne).toBeCalledWith(id, { relations: ['category'] });
       expect(error.code).toEqual('PRODUCT-004');
       expect(error.statusCode).toEqual(500);
     }
@@ -131,7 +131,7 @@ describe('Test product repository', () => {
     const categories = await productRepository.getAll();
 
     expect(repositoryMock.find).toBeCalledTimes(1);
-    expect(repositoryMock.find).toBeCalledWith();
+    expect(repositoryMock.find).toBeCalledWith({ relations: ['category'] });
     expect(categories).toEqual(productsMock);
   });
 
@@ -144,7 +144,7 @@ describe('Test product repository', () => {
       await productRepository.getAll();
     } catch (error) {
       expect(repositoryMock.find).toBeCalledTimes(1);
-      expect(repositoryMock.find).toBeCalledWith();
+      expect(repositoryMock.find).toBeCalledWith({ relations: ['category'] });
       expect(error.code).toEqual('PRODUCT-005');
       expect(error.statusCode).toEqual(500);
     }
