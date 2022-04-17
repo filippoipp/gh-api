@@ -1,5 +1,5 @@
 # Instalação das dependências
-yarn`
+`yarn`
 
 # Criar o container do banco de dados
 `docker-compose up -d` para criar o container com o banco de dados
